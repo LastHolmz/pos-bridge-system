@@ -32,7 +32,7 @@ const SearchInput = ({
   useEffect(() => {
     setValue(value.trim());
     handleSearch(value);
-  }, [value]);
+  }, [value, handleSearch]);
 
   return (
     <Input

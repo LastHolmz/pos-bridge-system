@@ -17,8 +17,14 @@ export const metadata: Metadata = {
   title: "ادارة المخزون الكلي",
 };
 
-const page = async () => {
-  const products = await getProducts();
+const page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) => {
+  const query = (await searchParams).query;
+  const products = await getProducts(query);
+
   return (
     <main className="p-2">
       <Breadcrumb>

@@ -1,6 +1,7 @@
 import { Input } from "./ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { CiSearch } from "react-icons/ci";
+import ToggleTheme from "./theme-toggle";
 
 const Header = () => {
   return (
@@ -13,10 +14,14 @@ const Header = () => {
         />
         <CiSearch className=" absolute left-2" />
       </div>
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
+
+      <div className="flex justify-center items-center gap-2">
+        <ToggleTheme />
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </div>
     </header>
   );
 };

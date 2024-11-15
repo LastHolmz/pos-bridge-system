@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
-import { Toast, ToastProvider } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const cairo = Cairo({
   weight: ["200", "1000", "500", "400", "700", "300", "600"],
@@ -21,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" suppressHydrationWarning dir="rtl">
       <body className={`${cairo.className} antialiased`}>
-        <main>{children}</main>
-        <Toaster />
+        <ThemeProvider>
+          <main>{children}</main>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

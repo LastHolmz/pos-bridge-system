@@ -4,9 +4,15 @@ import prisma from "@/prisma/db";
 import { revalidateTag, unstable_cache } from "next/cache";
 import { Product } from "@prisma/client";
 export const getProducts = unstable_cache(
-  async () => {
+  async (query?: string) => {
     try {
-      const products = await prisma.product.findMany();
+      const products = await prisma.product.findMany({
+        where: {
+          name: {
+            contains: query,
+          },
+        },
+      });
       if (!products) {
         return [];
       }

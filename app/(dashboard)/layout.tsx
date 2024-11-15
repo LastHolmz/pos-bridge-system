@@ -9,11 +9,10 @@ const layout = ({ children }: { children: ReactNode }) => {
       dir="rtl"
     >
       <section>
-        {/* <section className="md:bg-background hidden md:block"> */}
         <NavigationRail />
       </section>
 
-      <section className="flex-1 max-w-full">
+      <section className="max-w-full flex-1">
         <Header />
         <div className="h-full w-full bg-secondary">{children}</div>
       </section>

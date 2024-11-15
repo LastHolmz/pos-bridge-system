@@ -2,10 +2,10 @@
 import { Sidebar, Menu, sidebarClasses } from "react-pro-sidebar";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FaBars, FaChartBar, FaRegChartBar } from "react-icons/fa";
+import { FaBars, FaRegChartBar } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { FaUsers } from "react-icons/fa";
+import { FaRegCircleUser } from "react-icons/fa6";
 import { RiPresentationFill } from "react-icons/ri";
 import {
   MdAttachEmail,
@@ -19,7 +19,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { HiMiniBars2 } from "react-icons/hi2";
 import ToggleTheme from "./theme-toggle";
 import Link from "next/link";
-
+import { BiLogOut } from "react-icons/bi";
+import { IoMdSettings } from "react-icons/io";
 const NavigationRailItem = ({
   href,
   collapsed,
@@ -49,10 +50,9 @@ const NavigationRailItem = ({
     >
       {!collapsed && (
         <div>
-          {" "}
           <span>{name}</span>
         </div>
-      )}{" "}
+      )}
       <div>
         <Icon size={24} />
       </div>
@@ -114,7 +114,7 @@ const NavigationRail = () => {
     >
       <div
         className={cn(
-          "w-full flex items-center justify-end px-2 py-2",
+          "w-full flex items-center justify-between px-2 py-2",
           collapsed && "justify-center px-0 py-2"
         )}
       >
@@ -155,9 +155,9 @@ const NavigationRail = () => {
         <li className="my-2">
           <NavigationRailItem
             collapsed={collapsed}
-            href="/dashboard/users"
-            Icon={FaUsers}
-            name="المستخدمين"
+            href="/suppliers"
+            Icon={FaRegCircleUser}
+            name="الموردين"
           />
         </li>
         <li className="my-2">
@@ -169,6 +169,41 @@ const NavigationRail = () => {
           />
         </li>
       </Menu>
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full">
+        <button
+          className={cn(
+            "flex justify-between hover:bg-accent px-4 py-2 w-[80%] mx-auto items-center  gap-1 sm:gap-2 ",
+            "whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+            collapsed && "justify-center w-full rounded-none"
+          )}
+        >
+          {!collapsed && (
+            <div>
+              <span>{"تسجيل الخروج"}</span>
+            </div>
+          )}
+          <div>
+            <BiLogOut size={24} />
+          </div>
+        </button>
+
+        <button
+          className={cn(
+            "flex justify-between hover:bg-accent px-4 py-2 w-[80%] mx-auto items-center  gap-1 sm:gap-2 ",
+            "whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+            collapsed && "justify-center w-full rounded-none"
+          )}
+        >
+          {!collapsed && (
+            <div>
+              <span>{"الإعدادات"}</span>
+            </div>
+          )}
+          <div>
+            <IoMdSettings size={24} />
+          </div>
+        </button>
+      </div>
     </Sidebar>
   );
 };

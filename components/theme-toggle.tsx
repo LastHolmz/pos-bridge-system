@@ -1,14 +1,17 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { CiDark, CiLight } from "react-icons/ci";
 import { cn } from "@/lib/utils";
 
-export default function ToggleTheme() {
+const ToggleTheme = () => {
   const { setTheme, theme } = useTheme();
+  useEffect(() => {
+    console.log(theme);
+  }, [theme]);
 
   return (
     <Tabs defaultValue={theme ?? "system"}>
@@ -40,4 +43,6 @@ export default function ToggleTheme() {
       </TabsList>
     </Tabs>
   );
-}
+};
+
+export default ToggleTheme;

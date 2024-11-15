@@ -17,3 +17,12 @@ model Product {
   unit         Int
   expiryDate   DateTime
 }
+
+model Supplier {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  product     String
+  buyingPrice Int
+  contact     String
+  takingBack  Boolean
+}
