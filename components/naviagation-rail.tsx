@@ -21,6 +21,8 @@ import ToggleTheme from "./theme-toggle";
 import Link from "next/link";
 import { BiLogOut } from "react-icons/bi";
 import { IoMdSettings } from "react-icons/io";
+import { LiaUsersCogSolid } from "react-icons/lia";
+
 const NavigationRailItem = ({
   href,
   collapsed,
@@ -160,12 +162,13 @@ const NavigationRail = () => {
             name="الموردين"
           />
         </li>
+
         <li className="my-2">
           <NavigationRailItem
             collapsed={collapsed}
-            href="/dashboard/orders"
-            Icon={MdLocalOffer}
-            name="الفواتير"
+            href="/customers"
+            Icon={LiaUsersCogSolid}
+            name="المستخدمين"
           />
         </li>
       </Menu>

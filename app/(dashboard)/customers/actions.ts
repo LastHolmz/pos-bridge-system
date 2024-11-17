@@ -1,7 +1,7 @@
-import { addSupplier } from "@/database/suppliers";
+import { addCustomer } from "@/database/customers";
 import { z } from "zod";
 
-export async function addSupplierAction(
+export async function addCustomerAction(
   prevState: {
     message: string;
   },
@@ -10,19 +10,17 @@ export async function addSupplierAction(
   try {
     const schema = z.object({
       name: z.string(),
-      product: z.string(),
-      buyingPrice: z.string(),
-      contact: z.string(),
-      takingBack: z.enum(["true", "false"]),
+      phone: z.string(),
+      debt: z.string(),
+      currentValue: z.string(),
     });
     console.log(`schema: ${schema}`);
 
     const data = schema.safeParse({
       name: formData.get("name"),
-      product: formData.get("product"),
-      buyingPrice: formData.get("buyingPrice"),
-      contact: formData.get("contact"),
-      takingBack: formData.get("takingBack"),
+      debt: formData.get("debt"),
+      currentValue: formData.get("currentValue"),
+      phone: formData.get("phone"),
     });
 
     console.log(data.success);
@@ -36,15 +34,14 @@ export async function addSupplierAction(
       return { message: "يجب أن يتم ملء جميع الحقول" };
     }
     console.log(data);
-    const { buyingPrice, contact, name, product, takingBack } = data.data;
+    const { currentValue, phone, name, debt } = data.data;
 
-    const res = await addSupplier({
-      supplier: {
-        buyingPrice: Number(buyingPrice),
+    const res = await addCustomer({
+      customer: {
+        currentValue: Number(currentValue),
+        debt: Number(debt),
         name,
-        contact,
-        product,
-        takingBack: takingBack ? true : false,
+        phone,
       },
     });
     return { message: res.message };

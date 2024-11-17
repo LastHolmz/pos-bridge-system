@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
@@ -9,13 +9,19 @@ import { cn } from "@/lib/utils";
 
 const ToggleTheme = () => {
   const { setTheme, theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    console.log(theme);
-  }, [theme]);
+    setMounted(true); // Ensure component is only rendered after client hydration
+  }, []);
+
+  if (!mounted) {
+    return null; // Avoid rendering mismatched HTML during SSR
+  }
 
   return (
     <Tabs defaultValue={theme ?? "system"}>
-      <TabsList className="rounded-xl  border text-foreground m-0 p-0">
+      <TabsList className="rounded-xl border text-foreground m-0 p-0">
         <TabsTrigger
           aria-label="light mode on"
           className={cn("rounded-xl w-9 h-9 p-0")}

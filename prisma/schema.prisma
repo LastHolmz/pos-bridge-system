@@ -26,3 +26,11 @@ model Supplier {
   contact     String
   takingBack  Boolean
 }
+
+model Customer {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  phone        String
+  debt         Int    @default(0)
+  currentValue Int    @default(0)
+}

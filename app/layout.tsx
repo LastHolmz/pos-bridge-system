@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" suppressHydrationWarning dir="rtl">
-      <body className={`${cairo.className} antialiased`}>
+      <body className={`${cairo.className} antialiased class`}>
         <ThemeProvider>
           <main>{children}</main>
           <Toaster />
